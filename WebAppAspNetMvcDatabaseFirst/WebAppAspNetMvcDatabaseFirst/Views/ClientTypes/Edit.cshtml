@@ -1,0 +1,10 @@
+﻿@using WebAppAspNetMvcDatabaseFirst.ViewModels;
+@model ClientTypeViewModel
+
+@using (Html.BeginForm("Edit", "ClientTypes", FormMethod.Post))
+{
+    @Html.ValidationSummary();
+    @Html.EditorForModel()
+    <input type="submit" value="Сохранить" />
+    @Html.ActionLink("Отменить", "Index", "ClientTypes")
+}

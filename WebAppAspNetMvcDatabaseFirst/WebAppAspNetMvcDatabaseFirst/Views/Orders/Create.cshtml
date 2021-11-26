@@ -1,0 +1,11 @@
+﻿@using WebAppAspNetMvcDatabaseFirst.ViewModels;
+@model OrderViewModel
+
+<h3>Услуга</h3>
+
+@using (Html.BeginForm("Create", "Orders", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Сохранить" />
+    @Html.ActionLink("Отменить", "Index", "Orders")
+}

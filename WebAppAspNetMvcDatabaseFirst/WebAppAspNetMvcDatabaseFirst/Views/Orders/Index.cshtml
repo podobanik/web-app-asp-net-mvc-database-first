@@ -1,0 +1,40 @@
+﻿@using WebAppAspNetMvcDatabaseFirst.ViewModels;
+@model List<OrderViewModel>
+
+<h3>Услуги</h3>
+
+@Html.ActionLink("Добавить услуги", "Create", "Orders")
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Название услуги
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @order.Procedure
+                </td>
+                <td>
+                    @order.Description
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "Orders", new { id = order.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "Orders", new { id = order.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

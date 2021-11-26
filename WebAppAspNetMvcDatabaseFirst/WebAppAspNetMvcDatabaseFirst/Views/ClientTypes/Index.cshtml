@@ -1,0 +1,32 @@
+﻿@using WebAppAspNetMvcDatabaseFirst.ViewModels;
+@model List<ClientTypeViewModel>
+
+@Html.ActionLink("Добавить тип клиента", "Create", "ClientTypes")
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Тип клиента
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var clientTypes in Model)
+        {
+            <tr>
+                <td>
+                    @clientTypes.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "ClientTypes", new { id = clientTypes.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "ClientTypes", new { id = clientTypes.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

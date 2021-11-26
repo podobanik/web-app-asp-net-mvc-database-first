@@ -1,0 +1,78 @@
+﻿@using WebAppAspNetMvcDatabaseFirst.ViewModels;
+@using WebAppAspNetMvcDatabaseFirst.Extensions;
+
+@model List<ClientViewModel>
+
+<h3>Клиенты</h3>
+
+@Html.ActionLink("Добавить клиента", "Create", "Clients")
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Паспорт клиента
+            </th>
+            <th>
+                Имя клиента
+            </th>
+            <th>
+                Фамилия клиента
+            </th>
+            <th>
+                Возраст клиента
+            </th>
+            <th>
+                Дата рождения
+            </th>
+            <th>
+                Пол
+            </th>
+            <th>
+                Тип клиента
+            </th>
+            <th>
+                Услуги
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/Clients/GetImage/@client.Id" style="max-width: 100px; max-height: 200px;" />
+                </td>
+                <td>
+                    @client.Name
+                </td>
+                <td>
+                    @client.Surname
+                </td>
+                <td>
+                    @client.Age
+                </td>
+                <td>
+                    @(client.Birthday.HasValue? client.Birthday.Value.ToString("dd.MM.yyyy") : "-")
+                </td>
+                <td>
+                    @client.Gender.GetDisplayValue()
+                </td>
+                <td>
+                    @client.ClientType.Name
+                </td>
+                <td>
+                    @string.Join(", ", client.Orders.Select(x => $"{x.Procedure}"))
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "Clients", new { id = client.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "Clients", new { id = client.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
